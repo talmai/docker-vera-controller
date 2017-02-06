@@ -4,8 +4,7 @@ Use Amazon Echo to voice control your home automation devices through http comma
 
 Also includes MQTT server.
 
-
-This is a docker container for bwssystems' [ha-bridge](https://github.com/bwssytems/ha-bridge), forked from aptalca's [docker-ha-bridge](https://github.com/aptalca/docker-ha-bridge).
+This is a docker container for bwssystems' [ha-bridge](https://github.com/bwssytems/ha-bridge), forked from aptalca's [docker-ha-bridge](https://github.com/aptalca/docker-ha-bridge) and merged with work from hypriot's [rpi-java](https://github.com/hypriot/rpi-java).
 
 #### Installation instruction:
 

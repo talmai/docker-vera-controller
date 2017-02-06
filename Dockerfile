@@ -4,17 +4,16 @@ MAINTAINER Talmai Oliveira <to@talm.ai>
 
 VOLUME ["/config"]
 
-RUN export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
-	add-apt-repository -y ppa:webupd8team/java && \
-	apt-get update && \
-	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections && \
-	apt-get install -y \
-	wget \
-		oracle-java8-installer \
-		oracle-java8-set-default && \
-	usermod -u 99 nobody && \
-	usermod -g 100 nobody && \
-	mkdir -p /etc/my_init.d
+# Install OpenJDK 8 runtime without X11 support
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main" | sudo tee /etc/apt/sources.list.d/backports.list && \
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 8B48AD6246925553 && \
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 7638D0442B90D010 && \
+    apt-get update && \
+    apt-get -t jessie-backports install -y openjdk-8-jre-headless=8u111-b14-2~bpo8+1 --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-armhf
 
 COPY firstrun.sh /etc/my_init.d/firstrun.sh
 
