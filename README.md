@@ -1,10 +1,30 @@
-# hue
+### Docker container for RaspberryPi which allow for Veralite™ Smart Home Controller Automation
 
-A simple hue light utility.
+Use Amazon Echo to voice control your home automation devices through http commands sent to your home automation controller or built-in direct control of the Harmony Hub and Nest. 
 
-## Usage
+Also includes MQTT server.
 
-First, get a client "user" value, then set the `HUE_URL` environment variable to `http://{host}/api/{user}`.
+
+This is a docker container for bwssystems' [ha-bridge](https://github.com/bwssytems/ha-bridge), forked from aptalca's [docker-ha-bridge](https://github.com/aptalca/docker-ha-bridge).
+
+#### Installation instruction:
+
+You can run this docker with the following command:
+
+```docker run -d --name="Home-Automation-Bridge" --net="host" -e SERVERIP="192.168.X.X" -e SERVERPORT="XXXX" -v /path/to/config/:/config:rw -v /etc/localtime:/etc/localtime:ro aptalca/home-automation-bridge```
+
+- Replace the SERVERIP variable (192.168.X.X) with your server's IP
+- Replace the SERVERPORT variable (XXXX) with whichever port you choose for the web gui.
+- Replace the "/path/to/config" with your choice of location
+- If the `-v /etc/localtime:/etc/localtime:ro` mapping causes issues, you can try `-e TZ="<timezone>"` with the timezone in the format of "America/New_York" instead
+
+##### Optional Variables for the run command
+- By default, this will install the latest version on bwssystems github repo, and will auto update itself to the latest version on each container start, but if you want to run a different version (to go back to the previous version perhaps), include the following environment variable in your docker run command `-e VERSION="X.X.X"`
+- Once installed, open the WebUI at `http://SERVERIP:SERVERPORT/` and enter your Vera, Harmony and Nest info.
+  
+### Other code in this repo
+
+`hue.go`: First, get a client "user" value, then set the `HUE_URL` environment variable to `http://{host}/api/{user}`.
 
 	$ hue
 	usage: hue light
@@ -62,5 +82,3 @@ First, get a client "user" value, then set the `HUE_URL` environment variable to
 	2	49	3105k	Light above desk
 	3	49	3105k	Desk lamp
 	4	49	3105k	Reading lamp
-
-
