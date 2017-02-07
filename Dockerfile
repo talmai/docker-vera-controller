@@ -17,6 +17,8 @@ ENV JAVA_HOME /opt/jdk1.8.0/
 RUN apt-get update && \
 	apt-get install -y git wget
 
+RUN apt-get install -y curl
+
 COPY firstrun.sh /
 
 RUN chmod +x /firstrun.sh
