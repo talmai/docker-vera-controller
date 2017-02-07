@@ -10,7 +10,7 @@ This is a docker container for bwssystems' [ha-bridge](https://github.com/bwssyt
 
 You can run this docker with the following command:
 
-```docker run -d --name="Home-Automation-Bridge" --net="host" -e SERVERIP="192.168.X.X" -e SERVERPORT="XXXX" -v /path/to/config/:/config:rw -v /etc/localtime:/etc/localtime:ro aptalca/home-automation-bridge```
+```docker run -d --name="VeraLight-Home-Automation" --net="host" -e SERVERIP="192.168.X.X" -e SERVERPORT="XXXX" -v /path/to/config/:/config:rw -v /etc/localtime:/etc/localtime:ro aptalca/home-automation-bridge```
 
 - Replace the SERVERIP variable (192.168.X.X) with your server's IP
 - Replace the SERVERPORT variable (XXXX) with whichever port you choose for the web gui.
