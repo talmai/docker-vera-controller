@@ -1,6 +1,5 @@
 # Pull base image
 FROM resin/rpi-raspbian:jessie
-MAINTAINER Talmai Oliveira <to@talm.ai>
 
 VOLUME ["/config"]
 
